@@ -20,4 +20,16 @@ public class Calculate {
 		
 	}
 	
+	/**
+		* Method echo.
+		* @param name testText.
+		* @return Echo plus testText.
+	*/
+	
+	public String echo(String testText) {
+		
+		return "Echo, echo, echo: " + testText;
+		
+	}
+	
 }
