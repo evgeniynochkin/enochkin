@@ -18,9 +18,8 @@ public class CalculateTest {
 	
 	/**
 		* TestEcho.
-		* @Test
 	*/
-	
+	@Test
 	public void whenTakeNameThenTreeEchoPlusName() {
 		String input = "Evgeniy Nochkin";
 		String expect = "Echo, echo, echo: Evgeniy Nochkin";
