@@ -9,7 +9,8 @@ package ru.job4j.calculator;
 
 public class Fit {
 
-	private double result;
+	private static final double MAN = 100;
+	private static final double WOMAN = 110;
 	
 	/**
 	* Идеальный вес для мужчины.
@@ -17,8 +18,7 @@ public class Fit {
 	* @return Идеальный вес.
 	*/
 	double manWeight(double height) {
-		this.result = (height - 100) * 1.15D;
-		return this.result;
+		return (height - MAN) * 1.15D;
 	}
 	
 	/**
@@ -27,7 +27,6 @@ public class Fit {
 	* @return Идеальный вес.
 	*/
 	double womanWeight(double height) {
-		this.result = (height - 110) * 1.15D;
-		return this.result;
+		return (height - WOMAN) * 1.15D;
 	}
 }	
