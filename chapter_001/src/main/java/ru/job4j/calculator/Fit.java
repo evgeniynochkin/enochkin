@@ -11,6 +11,7 @@ public class Fit {
 
 	private static final double MAN = 100;
 	private static final double WOMAN = 110;
+	private static final double PAR = 1.15;
 	
 	/**
 	* Идеальный вес для мужчины.
@@ -18,7 +19,7 @@ public class Fit {
 	* @return Идеальный вес.
 	*/
 	double manWeight(double height) {
-		return (height - MAN) * 1.15D;
+		return (height - MAN) * PAR;
 	}
 	
 	/**
@@ -27,6 +28,6 @@ public class Fit {
 	* @return Идеальный вес.
 	*/
 	double womanWeight(double height) {
-		return (height - WOMAN) * 1.15D;
+		return (height - WOMAN) * PAR;
 	}
 }	
