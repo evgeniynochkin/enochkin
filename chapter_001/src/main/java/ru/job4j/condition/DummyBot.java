@@ -1,7 +1,7 @@
 package ru.job4j.condition;
 
 /**
-* Бот.
+* п▒п╬я┌.
 * 
 * @author Evgeniy Nochkin (nochjo@yandex.ru)
 * @since 25.02.2018
@@ -10,17 +10,17 @@ package ru.job4j.condition;
 public class DummyBot {
 	
 	/**
-	* Отвечает на вопросы.
-	* @param question Вопрос пользователя.
-	* @return Ответ.
+	* п·я┌п╡п╣я┤п╟п╣я┌ п╫п╟ п╡п╬п©я─п╬я│я▀.
+	* @param question п▓п╬п©я─п╬я│ п©п╬п╩я▄п╥п╬п╡п╟я┌п╣п╩я▐.
+	* @return п·я┌п╡п╣я┌.
 	*/
 	public String answer(String question) {
-		String rls = "Это ставит меня в тупик. Спросите другой вопрос.";
+		String rls = "п╜я┌п╬ я│я┌п╟п╡п╦я┌ п╪п╣п╫я▐ п╡ я┌я┐п©п╦п╨. п║п©я─п╬я│п╦я┌п╣ п╢я─я┐пЁп╬п╧ п╡п╬п©я─п╬я│.";
 		
-		if ("Привет, Бот".equals(question)) {
-			rls = "Привет, умник.";
-		} else if ("Пока.".equals(question)) {
-			rls = "До скорой встречи.";
+		if ("п÷я─п╦п╡п╣я┌, п▒п╬я┌".equals(question)) {
+			rls = "п÷я─п╦п╡п╣я┌, я┐п╪п╫п╦п╨.";
+		} else if ("п÷п╬п╨п╟.".equals(question)) {
+			rls = "п■п╬ я│п╨п╬я─п╬п╧ п╡я│я┌я─п╣я┤п╦.";
 		}
 		return rls;
 	}
