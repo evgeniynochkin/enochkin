@@ -46,7 +46,7 @@ public class Triangle {
 		double ac = this.a.distanceTo(this.c);
 		double bc = this.b.distanceTo(this.c);
 		double p = this.polperim(ab, ac, bc);
-		if (this.exist(ab)) {
+		if (this.exist(ab, ab, bc)) {
 			return sqrt(p * (p - ab) * (p - ac) * (p - bc));
 		} else {
 			return rls;
@@ -61,11 +61,7 @@ public class Triangle {
 	* @param bc расстояние между точками b c
 	* @return boolean
 	*/
-	private boolean exist(double ab) {
-		if (ab == 1) {
-			return true;
-		} else {
-			return false;
-		}
+	private boolean exist(double ab, double ac, double bc) {
+		return ab + bc > ac && ab + ac > bc && bc + ac > ab ? true : false;
 	}
 }
