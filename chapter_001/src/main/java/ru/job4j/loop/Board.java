@@ -18,7 +18,7 @@ public class Board {
 		String ln = System.lineSeparator();
 		for (int i = 0; i < width; i++) {
 			for (int j = 0; j < height; j++) {
-				if (i + j % 2 == 0) {
+				if ((i + j) % 2 == 0) {
 					screen.append("x");
 				} else {
 					screen.append(" ");
