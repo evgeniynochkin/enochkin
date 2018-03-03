@@ -8,14 +8,13 @@ package ru.job4j.loop;
 */
 public class Factorial {
 	
-	int fact = 1;
-	
-	/**
+		/**
 	* Считаем факториал.
 	* @param chislo.
 	* @return Факториал.
 	*/
 	public int calc(int n) {
+		int fact = 1;
 		for (int i = 2; i <= n; i++) {
 			fact = fact * i;
 		}
