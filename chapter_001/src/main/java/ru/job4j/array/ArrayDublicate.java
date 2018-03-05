@@ -6,7 +6,8 @@ import java.util.Arrays;
 * Удаление дубликатов в массиве.
 *
 * @author Evgeniy Nochkin (nochjo@yandex.ru)
-* @since 04.03.2018
+* @since 05.03.2018
+* @version v.2.0
 */
 public class ArrayDublicate {
 	
@@ -16,35 +17,24 @@ public class ArrayDublicate {
 	* @return array Новый массив (без повторений).
 	*/
 	public String[] remove(String[] array) {
-		String tmp;
-		int count = 0;
-		// Удаляем дубликаты.
+		int count = array.length;
+		String prov;
 		for (int i = 0; i < array.length; i++) {
-			String prov = array[i];
-			for (int j = (i + 1); j < array.length; j++) {
-				if (prov != null) {
-					if (prov.equals(array[j])) {
-						array[j] = null;
-					}
+			if (array[i] == null) { // Проверяем элемент массива на наличие ссылки.
+				break; 
+			}
+			prov = array[i];
+			int j = i + 1; //Начинаем сравнение со следующего элемента после i
+			while (array[j] != null) { // Пока есть проверяемые элементы (ссылки)
+				if (prov.equals(array[j])) {
+					array[j] = array[count - 1]; // На место дубликата ставим последний элемент массива.
+					array[count - 1] = null; // Последний элемент обнуляем.
+					count--; // Уменьшаем счетчик размера массива на 1.
+				} else { 
+					j++; //Переходим к сравнению исходного элемента со следующим.
 				}
 			}
 		}
-		// Убираем все null в конец.
-		for (int i = 0; i < array.length; i++) {
-			for (int j = 0; j < array.length - 1; j++) {
-				if (array[j] == null) {
-					array[j] = array[j + 1];
-					array[j + 1] = null;
-				}
-			}
-		}
-		// Считаем количество уникальных записей.
-		for (String i : array) {
-			if (i != null) {
-				count++;
-			}
-		}
-		array = Arrays.copyOf(array, count);
-		return array;
+		return Arrays.copyOf(array, count);
 	}
 }
