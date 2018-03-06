@@ -14,13 +14,10 @@ public class Matrix {
 	* @return Массив.
 	*/
 	public int[][] multiple(int size) {
-		int razmer = size + 1;
-		int[][] massiv = new int[razmer][razmer];
-		for (int i = 1; i < size + 1; i++) {
-			massiv[0][i] = i;
-			massiv[i][0] = i;
-			for (int j = 1; j < size + 1; j++) {
-				massiv[i][j] = i * j;
+		int[][] massiv = new int[size][size];
+		for (int i = 0; i < size; i++) {
+			for (int j = 0; j < size; j++) {
+				massiv[i][j] = (i + 1) * (j + 1);
 			}
 		}
 		return massiv;
