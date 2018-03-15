@@ -30,25 +30,25 @@ public class Item {
 		return this.id;
 	}
 	
-	/*public void setName(String name) {
+	public void setName(String name) {
 		this.name = name;
-	}*/
+	}
 	
 	public String getName() {
 		return this.name;
 	}
 	
-	/*public void setDesc(String desc) {
+	public void setDesc(String desc) {
 		this.desc = desc;
-	}*/
+	}
 	
 	public String getDesc() {
 		return this.desc;
 	}
 	
-	/*public void setCreated(long created) {
+	public void setCreated(long created) {
 		this.created = created;
-	}*/
+	}
 	
 	public long getCreated() {
 		return this.created;

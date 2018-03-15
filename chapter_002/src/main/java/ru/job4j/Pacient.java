@@ -13,7 +13,7 @@ public class Pacient {
 		this.name = name;
 	}
 	
-	public getName() {
-		return name;
+	public String getName() {
+		return this.name;
 	}
 }
