@@ -15,7 +15,7 @@ public class TrackerTest {
 		assertThat(tracker.findAll()[0], is(item));
 	}
 	
-	@Test
+	/*@Test
 	public void testFindByName() {
 		Tracker tracker = new Tracker();
 		Item item1 = new Item("test1", "testDesc1", 123L);
@@ -52,5 +52,5 @@ public class TrackerTest {
 		Item[] itemD = {item1, item2, item3, item5, item6};
 		tracker.delete(item4.getId());
 		assertThat(tracker.findAll(), is(itemD));
-	}
+	}*/
 }
