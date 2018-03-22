@@ -102,9 +102,10 @@ public class StartUI {
 	*/
 	private void editItem() {
 		System.out.println("--------------Редактирование записи------------");
-		String id = this.iput.ask("Введите Id заявки: ");
+		String id = this.input.ask("Введите Id заявки: ");
 		String name = this.input.ask("Введите новое имя заявки: ");
 		String desc = this.input.ask("Введите новое описание заявки: ");
+		Date time = new Date();
 		Item item = new Item(name, desc, time.getTime());
 		this.tracker.replace(id, item);
 		System.out.println("------------------Заявка с Id: " + item.getId() + " изменена-----------------");
@@ -115,10 +116,10 @@ public class StartUI {
 	* Удаление записи.
 	*/
 	private void deleteItem() {
-		System.out.println("----------------Удаление записи------------------);
+		System.out.println("----------------Удаление записи------------------");
 		String id = this.input.ask("Введите Id заявки на удаление: ");
 		this.tracker.delete(id);
-		System.out.println("------------------Заявка с Id: " id + " удалена-----------------");
+		System.out.println("------------------Заявка с Id: " + id + " удалена-----------------");
 		System.out.println(" ");
 	}
 	
@@ -126,7 +127,7 @@ public class StartUI {
 	* Поиск записи по Id.
 	*/
 	private void findByIdItem() {
-		System.out.println("----------------Поиск записи по Id------------------);
+		System.out.println("----------------Поиск записи по Id------------------");
 		String id = this.input.ask("Введите Id заявки: ");
 		Item findItem = this.tracker.findById(id);
 		System.out.println("Найдена заявка: " + findItem.getName() + " (Id - " + findItem.getId() + ") - " + findItem.getDesc() + ", создана " + findItem.getCreated());
@@ -138,10 +139,12 @@ public class StartUI {
 	* Поиск записи по имени.
 	*/
 	private void findByNameItem() {
-		System.out.println("----------------Поиск записи по Id------------------);
+		System.out.println("----------------Поиск записи по Id------------------");
 		String name = this.input.ask("Введите имя заявки: ");
-		Item findItem = this.tracker.findByName(name);
-		System.out.println("Найдена заявка: " + findItem.getName() + " (Id - " + findItem.getId() + ") - " + findItem.getDesc() + ", создана " + findItem.getCreated());
+		Item[] findItem = this.tracker.findByName(name);
+		for (Item fit : findItem) {
+			System.out.println("Найдена заявка: " + fit.getName() + " (Id - " + fit.getId() + ") - " + fit.getDesc() + ", создана " + fit.getCreated());
+		}
 		System.out.println("---------------------------------------------------");
 		System.out.println(" ");
 	}
