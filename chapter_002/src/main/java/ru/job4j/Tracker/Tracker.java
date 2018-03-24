@@ -6,12 +6,12 @@ import java.util.Arrays;
 /**
 * Класс-обертка Tracker.
 *
-* @author Evgeniy Nochkin (nochjj@yandex.ru)
-* @since 1.0
+* @author Evgeniy Nochkin (nochjo@yandex.ru)
+* @since 3.0
 */
 public class Tracker {
-	private Item[] items = new Item[100];
-	private int position = 0;
+	public Item[] items = new Item[100];
+	public int position = 0;
 	
 	/**
 	* Добавление заявки.
@@ -28,36 +28,24 @@ public class Tracker {
 	* Редактирование заявки.
 	* @param id, item.
 	*/
-	/*public void replace(String id, Item item) {
-		
-	}*/
+	public void replace(String id, Item item) {
+		int i = findIndexById(id);
+		items[i] = item;
+	}
 	
 	/**
 	* Удаление заявки.
 	* @param id.
 	*/
 	public void delete(String id) {
-		for (int i = 0; i < this.items.length; i++) {
-			if (this.items[i] != null & this.items[i].getId().equals(id)) {
-				this.items[i] = null;
+		for (int i = 0; i < this.position; i++) {
+			if (this.items[i].getId().equals(id)) {
+				this.items[i] = this.items[position - 1];
+				this.items[position - 1] = null;
+				position--;
+				break;
 			}
 		}
-	}
-	
-	/**
-	* Получение списка всех имеющихся заявок.
-	* @return Array of items not null.
-	*/
-	public Item[] findAll() {
-		Item[] rst = new Item[100];
-		int count = 0;
-		for (int i = 0; i < this.items.length; i++) {
-			if (this.items[i] != null) {
-				rst[count] = items[i];
-				count++;
-			}
-		}
-		return Arrays.copyOf(rst, count);
 	}
 	
 	/**
@@ -66,11 +54,11 @@ public class Tracker {
 	* @return Array of items by name.
 	*/
 	public Item[] findByName(String name) {
-		Item[] rst = this.findAll();
+		Item[] rst = new Item[position];
 		int count2 = 0;
-		for (Item zap : this.findAll()) {
-			if (zap != null & zap.getName().equals(name)) {
-				rst[count2] = zap;
+		for (int i = 0; i < this.position; i++) {
+			if (this.items[i].getName().equals(name)) {
+				rst[count2] = this.items[i];
 				count2++;
 			}
 		}
@@ -82,9 +70,8 @@ public class Tracker {
 	* @param id.
 	* @return item.
 	*/
-	/*public Item findById(String id) {
-		
-		return item[];
+	public Item findById(String id) {
+		return items[findIndexById(id)];
 	}
 	
 	/**
@@ -92,21 +79,27 @@ public class Tracker {
 	* @return id.
 	*/
 	private String generateId() {
-		//String id = null;
+		String id = null;
 		final Random rnd = new Random();
-		/*do {
+		do {
 			id = String.valueOf(rnd.nextInt());
-			for (Item zap : items) {
-				if (zap.getId() != null & zap.getId().equals(id)) {
+			for (int i = 0; i < this.position; i++) {
+				if (this.items[i].getId().equals(id)) {
 					id = null;
 				}
 			}
-			for (int i = 0; i < items.length; i++) {
-				if (items[i].getId().equals(id)) {
-					id = null; 
-				}
-			}
-		} while (id == null);*/
+		} while (id == null);
 		return String.valueOf(rnd.nextInt());
+	}
+	
+		private int findIndexById(String id) {
+		int index = 0;
+		for (int i = 0; i < this.position; i++) {
+			if (this.items[i].getId().equals(id)) {
+				index = i;
+				break;
+			} 
+		}
+		return index;
 	}
 }
