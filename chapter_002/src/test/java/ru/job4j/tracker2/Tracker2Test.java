@@ -1,4 +1,4 @@
-package ru.job4j.tracker;
+package ru.job4j.tracker2;
 
 import org.junit.Test;
 
@@ -92,7 +92,7 @@ public class Tracker2Test {
 		Item item7 = new Item("test7", "testDesc7", 130L);
 		String rstId = tracker.getItems()[2].getId();
 		tracker.replace(rstId, item7);
-		Item[] itemR = {item1, item2, item7, item4, item5, item6}; 
+		Item[] itemR = {item1, item2, item7, item4, item5, item6};
 		assertThat(tracker.getAll(), is(itemR));
 	}
 }

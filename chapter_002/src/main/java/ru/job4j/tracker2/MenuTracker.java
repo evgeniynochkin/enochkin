@@ -1,4 +1,4 @@
-package ru.job4j.tracker;
+package ru.job4j.tracker2;
 
 import java.util.Date;
 
@@ -11,7 +11,7 @@ class EditItem implements UserAction {
 			return 2;
 		}
 		
-		public void execute(Input input, Tracker tracker) {
+		public void execute(Input input, Tracker2 tracker) {
 			String id = input.ask("Input id: ");
 			String name = input.ask("Input name: ");
 			String desc = input.ask("Input desc: ");
@@ -36,14 +36,14 @@ class EditItem implements UserAction {
 public class MenuTracker {
 	
 	private Input input;
-	private Tracker tracker;
-	private UserAction[] actions = new UserAction[7];
-	
-	public MenuTracker(Input input, Tracker tracker) {
+	private Tracker2 tracker;
+	private UserAction[] actions = new UserAction[6];
+
+	public MenuTracker(Input input, Tracker2 tracker) {
 		this.input = input;
 		this.tracker = tracker;
 	}
-	
+
 	public void fillActions() {
 		this.actions[0] = new AddItem();
 		this.actions[1] = new MenuTracker.ShowItems();
@@ -51,13 +51,12 @@ public class MenuTracker {
 		this.actions[3] = new MenuTracker.DeleteItem();
 		this.actions[4] = new FindItemById();
 		this.actions[5] = new FindItemByName();
-		this.actions[6] = new Exit();
 	}
-	
+
 	public void select(int key) {
 		this.actions[key].execute(this.input, this.tracker);
 	}
-	
+
 	public void show() {
 		for (UserAction action : this.actions) {
 			if (action != null) {
@@ -65,7 +64,7 @@ public class MenuTracker {
 			}
 		}
 	}
-	
+
 	/**
 	* Внутренний класс добавления Item.
 	*/
@@ -73,20 +72,20 @@ public class MenuTracker {
 		public int key() {
 			return 0;
 		}
-		
-		public void execute(Input input, Tracker tracker) {
+
+		public void execute(Input input, Tracker2 tracker) {
 			String name = input.ask("Input name: ");
 			String desc = input.ask("Input desc: ");
 			Date time = new Date();
 			Item item = new Item(name, desc, time.getTime());
 			tracker.add(item);
 		}
-		
+
 		public String info() {
 			return String.format("%s. %s", this.key(), "Add the new item: ");
 		}
 	}
-	
+
 	/**
 	* Внутренний класс вывода записей.
 	*/
@@ -94,8 +93,8 @@ public class MenuTracker {
 		public int key() {
 			return 1;
 		}
-		
-		public void execute(Input input, Tracker tracker) {
+
+		public void execute(Input input, Tracker2 tracker) {
 			Item[] zap = tracker.getAll();
 			for (Item it : zap) {
 				System.out.println(
@@ -103,12 +102,12 @@ public class MenuTracker {
 				);
 			}
 		}
-		
+
 		public String info() {
 			return String.format("%s. %s", this.key(), "Show all items: ");
 		}
 	}
-	
+
 	/**
 	* Внутренний класс удаления записи.
 	*/
@@ -116,17 +115,17 @@ public class MenuTracker {
 		public int key() {
 			return 3;
 		}
-		
-		public void execute(Input input, Tracker tracker) {
+
+		public void execute(Input input, Tracker2 tracker) {
 			String id = input.ask("Input ID for delete: ");
 			tracker.delete(id);
 		}
-		
+
 		public String info() {
 			return String.format("%s. %s", this.key(), "Delete item: ");
 		}
 	}
-	
+
 	/**
 	* Внутренний класс поиска по ID.
 	*/
@@ -134,20 +133,20 @@ public class MenuTracker {
 		public int key() {
 			return 4;
 		}
-		
-		public void execute(Input input, Tracker tracker) {
+
+		public void execute(Input input, Tracker2 tracker) {
 			String id = input.ask("Input ID: ");
 			Item findItem = tracker.findById(id);
 			System.out.println(
 				String.format("Найдена заявка %s (Id - %s) - %s, создана %s", findItem.getName(), findItem.getId(), findItem.getDesc(), findItem.getCreated())
 			);
 		}
-		
+
 		public String info() {
 			return String.format("%s. %s", this.key(), "Find item by ID: ");
 		}
 	}
-	
+
 	/**
 	* Внутренний класс поиска по имени.
 	*/
@@ -155,8 +154,8 @@ public class MenuTracker {
 		public int key() {
 			return 5;
 		}
-		
-		public void execute(Input input, Tracker tracker) {
+
+		public void execute(Input input, Tracker2 tracker) {
 			String name = input.ask("Input Name: ");
 			Item[] findItem = tracker.findByName(name);
 			for (Item fit : findItem) {
@@ -170,21 +169,4 @@ public class MenuTracker {
 			return String.format("%s. %s", this.key(), "Find item by Name: ");
 		}
 	}
-
-    /**
-     * Завершение работы программы.
-     */
-    private class Exit implements UserAction {
-        public int key() {
-            return 6;
-        }
-
-        public void execute(Input input, Tracker tracker) {
-            System.exit(0);
-        }
-
-        public String info() {
-			return String.format("%s. %s", this.key(), "Exit: ");
-        }
-    }
 }

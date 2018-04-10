@@ -1,7 +1,9 @@
-package ru.job4j.tracker;
+package ru.job4j.tracker2;
 
-import java.util.Random;
+import ru.job4j.tracker2.Item;
+
 import java.util.Arrays;
+import java.util.Random;
 
 /**
 * Класс-обертка Tracker.
@@ -12,11 +14,11 @@ import java.util.Arrays;
 public class Tracker2 {
 	private Item[] items;
 	private int count;
-	
+
 	public Item[] getItems() {
 		return Arrays.copyOf(this.items, this.items.length);
 	}
-	
+
 	/**
 	* Добавление заявки.
 	* @param item.
@@ -40,7 +42,7 @@ public class Tracker2 {
 			this.items[0] = item;
 		}
 	}
-	
+
 	/**
 	* Редактирование заявки.
 	* @param id, item.
@@ -49,7 +51,7 @@ public class Tracker2 {
 		int i = findIndexById(id);
 		items[i] = item;
 	}
-	
+
 	/**
 	* Удаление заявки.
 	* @param id.
@@ -71,7 +73,7 @@ public class Tracker2 {
 		return items;
 	}
 
-	
+
 	/**
 	* Получение списка по имени.
 	* @param name.

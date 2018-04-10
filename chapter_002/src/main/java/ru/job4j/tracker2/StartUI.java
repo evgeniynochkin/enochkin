@@ -1,6 +1,4 @@
-package ru.job4j.tracker;
-
-import java.util.Date;
+package ru.job4j.tracker2;
 
 /**
 * Основной класс Trackera.
@@ -20,7 +18,7 @@ public class StartUI {
 	* Основной цикл программы.
 	*/
 	public void init() {
-		Tracker tracker = new Tracker();
+		Tracker2 tracker = new Tracker2();
 		MenuTracker menu = new MenuTracker(this.input, tracker);
 		menu.fillActions();
 		do {

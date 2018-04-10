@@ -49,7 +49,7 @@ public class TrackerTest {
 		tracker.add(item5);
 		Item item6 = new Item("test2", "testDesc6", 128L);
 		tracker.add(item6);
-		Item[] itemD = {item1, item2, item3, item6, item5};
+		Item[] itemD = {item1, item2, item3, item5, item6};
 		String rst = tracker.items[3].getId();
 		tracker.delete(rst);
 		Item[] zapItems = new Item[tracker.position];

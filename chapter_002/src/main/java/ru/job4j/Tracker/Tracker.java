@@ -40,8 +40,12 @@ public class Tracker {
 	public void delete(String id) {
 		for (int i = 0; i < this.position; i++) {
 			if (this.items[i].getId().equals(id)) {
-				this.items[i] = this.items[position - 1];
-				this.items[position - 1] = null;
+				//this.items[i] = this.items[position - 1];
+				//this.items[position - 1] = null;
+				Item[] temp = new Item[100];
+				System.arraycopy(items, 0, temp, 0, i);
+				System.arraycopy(items, i + 1, temp, i, position - i - 1);
+				items = temp;
 				position--;
 				break;
 			}
@@ -101,5 +105,9 @@ public class Tracker {
 			} 
 		}
 		return index;
+	}
+
+	public Item[] getAll() {
+		return Arrays.copyOf(items, position);
 	}
 }
