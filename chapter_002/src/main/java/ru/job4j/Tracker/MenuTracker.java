@@ -3,30 +3,6 @@ package ru.job4j.tracker;
 import java.util.Date;
 
 /**
-* Внутренний класс редактирования записи по ID.
-*/
-
-class EditItem implements UserAction {
-	public int key() {
-			return 2;
-		}
-		
-		public void execute(Input input, Tracker tracker) {
-			String id = input.ask("Input id: ");
-			String name = input.ask("Input name: ");
-			String desc = input.ask("Input desc: ");
-			Date time = new Date();
-			Item item = new Item(name, desc, time.getTime());
-			item.setId(id);
-			tracker.replace(id, item);
-		}
-		
-		public String info() {
-			return String.format("%s. %s", this.key(), "Edit the item: ");
-		}
-}
-
-/**
 * Меню.
 *
 * @author Evgeniy Nochkin (nochjo@yandex.ru)
@@ -65,6 +41,14 @@ public class MenuTracker {
 			}
 		}
 	}
+
+	public Item createItem(Input input, Tracker tracker) {
+		String name = input.ask("Input name: ");
+		String desc = input.ask("Input desc: ");
+		Date time = new Date();
+		Item item = new Item(name, desc, time.getTime());
+		return item;
+	}
 	
 	/**
 	* Внутренний класс добавления Item.
@@ -75,18 +59,36 @@ public class MenuTracker {
 		}
 		
 		public void execute(Input input, Tracker tracker) {
-			String name = input.ask("Input name: ");
-			String desc = input.ask("Input desc: ");
-			Date time = new Date();
-			Item item = new Item(name, desc, time.getTime());
-			tracker.add(item);
+			tracker.add(createItem(input, tracker));
 		}
 		
 		public String info() {
 			return String.format("%s. %s", this.key(), "Add the new item: ");
 		}
 	}
-	
+
+	/**
+	 * Внутренний класс редактирования записи по ID.
+	 */
+
+	private class EditItem implements UserAction {
+		public int key() {
+			return 2;
+		}
+
+		public void execute(Input input, Tracker tracker) {
+			String id = input.ask("Input id: ");
+			Item item;
+			item = createItem(input, tracker);
+			item.setId(id);
+			tracker.replace(id, item);
+		}
+
+		public String info() {
+			return String.format("%s. %s", this.key(), "Edit the item: ");
+		}
+	}
+
 	/**
 	* Внутренний класс вывода записей.
 	*/
