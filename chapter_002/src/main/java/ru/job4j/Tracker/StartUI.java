@@ -12,16 +12,18 @@ import java.util.Date;
 public class StartUI {
 	private int[] ranges = new int[] {0, 1, 2, 3, 4, 5, 6};
 	private Input input;
+	private Tracker tracker;
 
-	public StartUI(Input input) {
+	public StartUI(Input input, Tracker tracker) {
 		this.input = input;
+		this.tracker = tracker;
 	}
 	
 	/**
 	* Основной цикл программы.
 	*/
 	public void init() {
-		Tracker tracker = new Tracker();
+		tracker = new Tracker();
 		MenuTracker menu = new MenuTracker(this.input, tracker);
 		menu.fillActions();
 		do {
@@ -32,7 +34,11 @@ public class StartUI {
 	}
 
 	public static void main(String[] args) {
-		Input input = new ValidateInput();
-		new StartUI(input).init();
+		new StartUI(
+				new ValidateInput(
+						new ConsoleInput()
+				),
+				new Tracker()
+		).init();
 	}
 }
