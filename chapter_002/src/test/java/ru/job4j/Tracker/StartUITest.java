@@ -1,4 +1,4 @@
-/*package ru.job4j.tracker;
+package ru.job4j.tracker;
 
 import org.junit.Test;
 import org.junit.Before;
@@ -7,7 +7,7 @@ import static org.junit.Assert.assertThat;
 
 public class StartUITest {
 	
-	private final Tracker2 tracker = new Tracker2();
+	private final Tracker tracker = new Tracker();
 	
 	@Before
 	public void loadOutput() {
@@ -61,4 +61,4 @@ public class StartUITest {
 		new StartUI(input, tracker).init();
 		assertThat(tracker.getAll()[2].getName(), is("test name3"));
 	}
-}*/
+}
