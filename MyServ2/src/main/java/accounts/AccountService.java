@@ -1,29 +1,21 @@
 package accounts;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class AccountService {
 
-    private String login;
-    private String password;
+    private final Map<String, UserProfile> loginToProfile;
 
     public AccountService() {
-        login = new String();
-        password = new String();
+        loginToProfile = new HashMap<>();
     }
 
-    public AccountService(String login, String pass) {
-        this.login = login;
-        this.password = pass;
+    public void addNewUser(UserProfile userProfile) {
+        loginToProfile.put(userProfile.getLogin(), userProfile);
     }
 
-    public AccountService(String login) {
-        this.login = login;
-        this.password = login;
+    public UserProfile getUserByLogin(String login) {
+        return loginToProfile.get(login);
     }
-
-    public void setLogin(String login) { this.login = login; }
-    public void setPassword(String password) { this.password = password; }
-
-    public String getLogin() { return login; }
-    public String getPass() { return password; }
-
 }
