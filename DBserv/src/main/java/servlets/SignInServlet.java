@@ -28,19 +28,13 @@ public class SignInServlet extends HttpServlet {
             e.printStackTrace();
         }
 
-        if (login == null || password == null) {
-            response.setContentType("text/html;charset=utf-8");
-            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
-            return;
-        }
+//        if (login == null || password == null) {
+//            response.setContentType("text/html;charset=utf-8");
+//            response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
+//            return;
+//        }
 
-        UserProfile profile = null;
-        try {
-            profile = accountService.getUserByLogin(login);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        if (profile == null || !profile.getPass().equals(password)) {
+        if (user == null || !user.getPass().equals(password)) {
             response.setContentType("text/html;charset=utf-8");
             response.getWriter().println("Unauthorized");
             response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);

@@ -1,3 +1,5 @@
+package main;
+
 import chat.WebSocketChatServlet;
 import org.eclipse.jetty.server.Handler;
 import org.eclipse.jetty.server.Server;
@@ -6,9 +8,9 @@ import org.eclipse.jetty.server.handler.ResourceHandler;
 import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
 
-public class main {
+public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
 
         Server server = new Server(8080); //Создаем сервер на порту 8080
         ServletContextHandler sch = new ServletContextHandler(ServletContextHandler.SESSIONS); //Создаем обработчик ситуаций в сервлетах

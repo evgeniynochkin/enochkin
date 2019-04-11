@@ -1,21 +1,30 @@
 package accounts;
 
-import java.util.HashMap;
-import java.util.Map;
+import dbservice.DBException;
+import dbservice.DBService;
 
 public class AccountService {
 
-    private final Map<String, UserProfile> loginToProfile;
+    DBService dbService = new DBService();
 
-    public AccountService() {
-        loginToProfile = new HashMap<>();
+    //Добавление пользователя в БД
+    public void addNewUser(String login, String password) {
+        try {
+            long userId = dbService.addUser(login, password);
+            System.out.println("Added user id: " + userId);
+        } catch (DBException e) {
+            e.printStackTrace();
+        }
     }
 
-    public void addNewUser(UserProfile userProfile) {
-        loginToProfile.put(userProfile.getLogin(), userProfile);
-    }
-
-    public UserProfile getUserByLogin(String login) {
-        return loginToProfile.get(login);
+    //Получение логина и пароля
+    public UserProfile getUser(String login) {
+        try {
+            String password = dbService.getUser(login).getPassword();
+            return new UserProfile(login, password);
+        } catch (DBException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }

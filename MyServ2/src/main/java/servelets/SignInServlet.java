@@ -6,6 +6,11 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import accounts.AccountService;
 import accounts.UserProfile;
+import dbservice.DBException;
+import dbservice.dao.UserDAO;
+import dbservice.datasets.UserDataSet;
+import org.hibernate.HibernateException;
+import org.hibernate.Session;
 
 public class SignInServlet extends HttpServlet {
 
@@ -19,7 +24,7 @@ public class SignInServlet extends HttpServlet {
         String login = request.getParameter("login");
         String password = request.getParameter("password");
 
-        UserProfile user = accountService.getUserByLogin(login);
+        UserProfile user = accountService.getUser(login);
 
         if (login == null || password == null) {
             response.setContentType("text/html;charset=utf-8");
@@ -27,15 +32,14 @@ public class SignInServlet extends HttpServlet {
             return;
         }
 
-        UserProfile profile = accountService.getUserByLogin(login);
-        if (profile == null || !profile.getPass().equals(password)) {
+        if (user == null || !user.getPass().equals(password)) {
             response.setContentType("text/html;charset=utf-8");
             response.getWriter().println("Unauthorized");
             response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
             return;
         }
 
-        if (user.getLogin().compareTo(login) == 0) {
+        if (user.getLogin().compareTo(login) == 0) { //equalse заменить
             response.setContentType("text/html;charset=utf-8");
             response.getWriter().println("Authorized: " + login);
             response.setStatus(HttpServletResponse.SC_OK);

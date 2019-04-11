@@ -17,8 +17,6 @@ public class SignUpServlet extends HttpServlet {
         String login = request.getParameter("login");
         String password = request.getParameter("password");
 
-        UserProfile user = new UserProfile(login, password);
-
-        accountService.addNewUser(user);
+        accountService.addNewUser(login, password);
     }
 }

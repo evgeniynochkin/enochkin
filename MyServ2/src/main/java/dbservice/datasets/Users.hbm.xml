@@ -1,0 +1,15 @@
+<hibernate-mapping>
+
+    <class name="logic.Users" table="users">
+
+        <id column="id" name="id" type="java.lang.Long">
+            <generator class="increment"/>
+        </id>
+
+        <property column="name" name="name" type="java.lang.String"/>
+
+        <property column="password" name="password" type="java.lang.String"/>
+
+    </class>
+
+</hibernate-mapping>

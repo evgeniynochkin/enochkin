@@ -1,21 +1,20 @@
-package dbservice;
-
-import accounts.UserProfile;
-
 import java.sql.*;
 
-public class SQLUsers {
+public class SQLUser {
 
     Connection connection;
     private ResultSet rs;
 
-    public SQLUsers() throws SQLException {
-        this.connection = DCService.getConnection();
+    public SQLUser() throws SQLException {
+//        this.connection = DBService.getConnection();
+        if (connection == null || connection.isClosed()) {
+            connection = DBService.getConnection();
+        }
     }
 
     public void reopenConnection() throws SQLException {
         if (connection == null || connection.isClosed()) {
-            connection = DCService.getConnection();
+            connection = DBService.getConnection();
         }
     }
 
@@ -37,15 +36,15 @@ public class SQLUsers {
             e.printStackTrace();
         }
     }
-
-    public UserProfile getUser(String login) throws SQLException {
-        Statement statement = connection.createStatement();
-        rs = statement.executeQuery("SELECT LOG, PASS FROM USERS");
-        while (rs.next()) {
-            String l = rs.getString(1);
-            String p = rs.getString(2);
-            if (l.equals(login)) { return new UserProfile(l, p); }
-        }
-        return null;
-    }
+//
+//    public UserProfile getUser(String login) throws SQLException {
+//        Statement statement = connection.createStatement();
+//        rs = statement.executeQuery("SELECT LOG, PASS");
+//        while (rs.next()) {
+//            String l = rs.getString(2);
+//            String p = rs.getString(3);
+//            if (l.equals(login)) { return new UserProfile(l, p); }
+//        }
+//        return null;
+//    }
 }
